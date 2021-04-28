@@ -211,8 +211,6 @@
 <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
 
 <script>
-  window.onload = () => {
-
     function showMap(name) {
       let arr = document.getElementsByName(name);
       let latitude = arr[0].value;
@@ -226,21 +224,6 @@
               longitud +
               "&z=15&output=embed";
     }
-
-  }
-
-  class FormApi {
-    constructor(name, lastName, area, nivelEscolar,user,latitude, longitude, photo) {
-      this.name = name;
-      this.lastName = lastName;
-      this.area = area;
-      this.nivelEscolar = nivelEscolar;
-      this.user = user;
-      this.latitude = latitude;
-      this.longitude = longitude;
-      this.photo = photo;
-    }
-  }
 
   function listForms() {
     let forms;
@@ -275,10 +258,12 @@
   function fillTable(forms) {
 
     const body = document.getElementById("bodyForms");
-    let i = 0;
 
     forms.forEach((form, index) => {
+
       const tr = document.createElement('tr');
+
+
       let tds = '';
       tds += `
                         <td>${form.name}</td>
@@ -286,24 +271,26 @@
                         <td>${form.area}</td>
                         <td>${form.nivelEscolar}</td>
                         <td>${form.user}</td>
-                        <td><button id="btnPhoto-${i}" class="btn btn-success btn-sm">Foto</button></td>
-                        <td><button id="btnMap-${i}" class="btn btn-primary btn-sm">Mapa</button></td>
-                        <input type="hidden" value="${i}">
-                        <input name=${i} type="hidden" value="${form.latitude}">
-                        <input name=${i++} type="hidden" value="${form.longitude}">
+                        <td><button id="btnPhoto-${index}" class="btn btn-success btn-sm">Foto</button></td>
+                        <td><button id="btnMap-${index}" class="btn btn-primary btn-sm">Mapa</button></td>
+                        <input type="hidden" value="${index}">
+                        <input name=${index} type="hidden" value="${form.latitude}">
+                        <input name=${index} type="hidden" value="${form.longitude}">
                     `
+
       tr.innerHTML = tds;
       body.appendChild(tr);
     });
 
-    i = 0;
+
 
     forms.forEach((form, index) => {
-      document.getElementById(`btnMap-${i}`).addEventListener('click', () => {
-        showMap(i)
+
+      document.getElementById(`btnMap-${index}`).addEventListener('click', () => {
+        showMap(index+"")
       });
 
-      const btnFoto = document.getElementById(`btnPhoto-${i++}`);
+      const btnFoto = document.getElementById(`btnPhoto-${index}`);
       btnFoto.addEventListener('click', () => {
         document.getElementById('imgtest').setAttribute('src', form.photo);
         $("#exampleModal").modal('show');
