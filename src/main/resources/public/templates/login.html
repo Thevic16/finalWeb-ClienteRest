@@ -98,7 +98,7 @@
               </div>
 
               <div class="container-login100-form-btn text-center">
-                <button class="login100-form-btn" onclick="checkLogin()">
+                <button class="login100-form-btn" id="btnLogin">
                   Iniciar Sesión
                 </button>
               </div>
@@ -140,13 +140,62 @@
 
 
 <script>
+
+  let btnLogin = document.getElementById("btnLogin");
+
+  btnLogin.addEventListener('click',function (event){
+    event.preventDefault();
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    let url = 'http://localhost:7000/api/v1/login/';
+    let data = { "username": username,"password":password };
+
+    fetch(url, {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify(data), // data can be `string` or {object}!
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+            .catch(error => {
+              console.error('Error:', error);
+              alert("Error!"+error);
+            })
+
+            .then(response => {
+
+              let token = response.token; // we need to read the body first.
+              //console.log("response.status:"+response.status); It is not working fine I do not why
+              //console.log("response.ok:"+response.ok);
+              console.log("token:"+token);
+
+
+              if(token != undefined){
+                console.log('Success:', response);
+                localStorage.setItem("token", token);
+                //Local storange
+                localStorage.setItem('user', username);
+                // Simulate a mouse click:
+                window.location.href = "/create-form";
+              }
+              else{
+                alert("Usuario o contraseña incorrecta!");
+                window.location.href = "/";
+              }
+
+            });
+  });
+
+
+  /*
   function checkLogin(){
       let username = document.getElementById("username").value;
       let password = document.getElementById("password").value;
 
       let url = 'http://localhost:7000/api/v1/login/';
       let data = { "username": username,"password":password };
-
 
       fetch(url, {
         method: 'POST', // or 'PUT'
@@ -182,7 +231,10 @@
                 }
 
               });
+
   }
+
+   */
 
 </script>
 
