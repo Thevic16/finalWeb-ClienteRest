@@ -262,9 +262,8 @@
     forms.forEach((form, index) => {
 
       const tr = document.createElement('tr');
-
-
       let tds = '';
+
       tds += `
                         <td>${form.name}</td>
                         <td>${form.lastName}</td>
@@ -301,6 +300,12 @@
 
 
   function searchForm(){
+
+    for(let i = document.getElementById("tableForms").rows.length; i > 0;i--)
+    {
+      document.getElementById("tableForms").deleteRow(i -1);
+    }
+
     listForms();
   }
 
