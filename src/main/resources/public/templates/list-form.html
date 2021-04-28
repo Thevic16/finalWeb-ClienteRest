@@ -88,30 +88,11 @@
   <div class="container justify-content-center">
     <!-- <a id="btnSync" href="" class="btn btn-sm btn-primary">Sincronizar con servidor</a> -->
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalSync">
-      Sincronizar con servidor
+    <input class="input100" type="text" name="username" id="username" placeholder="Ingrese nombre de usuario" required>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalSync" onclick="searchForm()">
+      Buscar Formularios
     </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalSync" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelSync" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabelSync">ALERTA</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Una vez que los formularios se sincronicen con el servidor ya no se podrán editar o eliminar, ¿Está seguro de que desea sincronizar con el servidor?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button id="btnSync" type="button" class="btn btn-success">Aceptar</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <br>
     <br>
@@ -125,9 +106,6 @@
         <th scope="col">Usuario</th>
         <th scope="col">Foto</th>
         <th scope="col">Acción 1</th>
-        <th scope="col">Acción 2</th>
-        <th scope="col">Acción 3</th>
-        <th scope="col">Estado (Servidor)</th>
       </tr>
       </thead>
       <tbody id="bodyForms">
@@ -217,11 +195,19 @@
 <script>
   window.onload = () => {
 
-    const indexedDB = new Dexie('dbparcial2');
-    indexedDB.version(1).stores({
-      forms: '++id,name,lastname,area,schoollevel,longitude,latitude,user,status,photo'
-    });
-    indexedDB.open().catch((err) => console.log(err));
+    class FormApi {
+      constructor(name, lastName, area, nivelEscolar,user,latitude, longitude, photo) {
+        this.name = name;
+        this.lastName = lastName;
+        this.area = area;
+        this.nivelEscolar = nivelEscolar;
+        this.user = user;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.photo = photo;
+      }
+    }
+
 
     function showMap(name) {
       let arr = document.getElementsByName(name);
@@ -237,21 +223,42 @@
               "&z=15&output=embed";
     }
 
-    async function listForms() {
 
-      const forms = await indexedDB.forms.toArray();
+     function listForms() {
+      let forms;
+      let user = document.getElementById("username");
+      let url = 'http://localhost:7000/api/v1/form/'+user;
+      const token = localStorage.getItem('token');
+
+
+      fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(form), // data can be `string` or {object}!
+        headers:{
+          'Content-Type': 'application/json',
+          mode: 'no-cors',
+          'Authorization': 'Bearer '+token
+        }
+
+      }).then(res => res.json())
+              .catch(error => { console.error('Error:', error); })
+              .then(response => {
+                forms = response;
+                console.log('Success:', response);
+                if(response != undefined){
+                  alert("El formulario ha sido guardado exitosamente.");
+                }
+
+              });
+
+
       fillTable(forms);
-      disableFormServer();
-    }
-
-    async function deleteForm(id) {
-      await indexedDB.forms.delete(parseInt(id));
-      window.location.reload();
     }
 
     function fillTable(forms) {
 
       const body = document.getElementById("bodyForms");
+      let i = 0;
 
       forms.forEach((form, index) => {
         const tr = document.createElement('tr');
@@ -260,28 +267,21 @@
                         <td>${form.name}</td>
                         <td>${form.lastName}</td>
                         <td>${form.area}</td>
-                        <td>${form.schoolLevel}</td>
+                        <td>${form.nivelEscolar}</td>
                         <td>${form.user}</td>
-                        <td><button id="btnPhoto-${form.id}" class="btn btn-success btn-sm">Foto</button></td>
-                        <td><button id="btnMap-${form.id}" class="btn btn-primary btn-sm">Mapa</button></td>
-                        <td><button class="btn btn-warning btn-sm" form="form-${form.id}">Editar</button></td>
-                        <td><button id="btnDel-${form.id}" class="btn btn-danger btn-sm" data-id="${form.id}">Eliminar</button></td>
-                        <td>${(form.status ? "ENVIADO" : "NO ENVIADO")}</td>
-                        <input type="hidden" value="${form.id}">
-                        <input name=${form.id} type="hidden" value="${form.latitude}">
-                        <input name=${form.id} type="hidden" value="${form.longitude}">\n
-                        <form action="/inapp/edit-form/${form.id}" method="get" id="form-${form.id}"></form>
+                        <td><button id="btnPhoto-${i}" class="btn btn-success btn-sm">Foto</button></td>
+                        <td><button id="btnMap-${i}" class="btn btn-primary btn-sm">Mapa</button></td>
+                        <input type="hidden" value="${i}">
+                        <input name=${i} type="hidden" value="${form.latitude}">
+                        <input name=${i++} type="hidden" value="${form.longitude}">
                     `
         tr.innerHTML = tds;
         body.appendChild(tr);
       });
+
       forms.forEach((form, index) => {
         document.getElementById(`btnMap-${form.id}`).addEventListener('click', () => {
           showMap(form.id)
-        });
-        const btnDel = document.getElementById(`btnDel-${form.id}`);
-        btnDel.addEventListener('click', () => {
-          deleteForm(btnDel.dataset.id);
         });
 
         const btnFoto = document.getElementById(`btnPhoto-${form.id}`);
@@ -292,29 +292,9 @@
       });
     }
 
-    //Disable delete and edit for forms that are already saved in the server.
-    function disableFormServer(){
-      let rows = document.getElementById("tableForms").rows;
-      console.log("rows:"+rows);
-
-      for (let i = 0; i < rows.length; i++) {
-
-        let status = rows[i].cells[9].innerHTML;
-        console.log("status:"+status);
-
-        if(status == "ENVIADO"){
-          let btnEdit = rows[i].cells[7].firstChild;
-          let btnDetele = rows[i].cells[8].firstChild;
-
-          btnEdit.disabled = true;
-          btnDetele.disabled = true;
-
-        }
-      }
-
+    function searchForm(){
+      listForms();
     }
-
-    listForms();
 
   }
 </script>
