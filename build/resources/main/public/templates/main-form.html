@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>NetBreakers - Formulario</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" -->
+  <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+  <link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <link href="/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/venobox/venobox.css" rel="stylesheet">
+  <!-- <link href="/vendor/owl.carousel/owl.carousel.min.css" rel="stylesheet"> -->
+  <link href="/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Icons font CSS - Formulario-->
+  <!-- <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+  <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> -->
+  <!-- Font special for pages Formulario -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+        rel="stylesheet">
+
+  <!-- Vendor CSS Formulario -->
+  <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+  <!-- <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all"> -->
+
+  <!-- Template Main CSS File -->
+  <link href="/css/style.css" rel="stylesheet">
+
+  <!-- Main CSS Formulario-->
+  <!-- <link href="css/main.css" rel="stylesheet" media="all"> -->
+
+  <script src="https://kit.fontawesome.com/156ff56ddf.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top " th:fragment="header">
+  <div class="container d-flex align-items-center">
+
+    <h1 class="logo mr-auto"><a href="/inapp">NetBreakers</a></h1>
+
+    <nav class="nav-menu d-none d-lg-block">
+      <ul>
+        <li class="active"><a href="/inapp">Formulario</a></li>
+        <li><a href="/inapp/list-form">Listar Formularios</a></li>
+      </ul>
+    </nav><!-- .nav-menu -->
+
+    <a href="/" class="get-started-btn scrollto">Cerrar Sesión</a>
+
+  </div>
+</header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+           data-aos="fade-up" data-aos-delay="200">
+        <h1>Formulario Encuesta</h1>
+        <h2>Somos un equipo de analistas e ingenieros de los datos que aplican el método científico a los resultados
+          de tus encuesta</h2>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+        <img src="/img/hero-img.png" class="img-fluid animated" alt="">
+      </div>
+    </div>
+  </div>
+
+</section><!-- End Hero -->
+
+<main id="main">
+  <!-- Modal -->
+
+  <div class="modal" id="modal-one" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2>Modal in CSS?</h2>
+        <a href="#" class="btn-close" aria-hidden="true">×</a>
+      </div>
+      <div class="modal-body">
+        <p>One modal example here! :D</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn">Nice!</a>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal -->
+
+  <br>
+  <div class="container">
+    <form>
+      <div class="form-row">
+        <div class="name">Nombre</div>
+        <div class="value">
+          <div class="input-group">
+            <input class="input--style-5" type="text" name="name" id="name1">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="name">Apellido</div>
+        <div class="value">
+          <div class="input-group">
+            <input class="input--style-5" type="text" name="lastname" id="lastname1">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="name">Sector</div>
+        <div class="value">
+          <div class="input-group">
+            <input class="input--style-5" type="text" name="sector" id="sector1">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="name">Nivel Escolar</div>
+        <div class="value">
+          <div class="input-group">
+            <div class="rs-select2 js-select-simple select--no-search">
+              <select name="schoolLevel" id="schoolLevelCreate">
+                <option disabled="disabled" selected="selected" value="Seleccione">Seleccione</option>
+                <option value="Básico">Básico</option>
+                <option value="Medio">Medio</option>
+                <option value="Grado Universitario">Grado Universitario</option>
+                <option value="Postgrado">Postgrado</option>
+                <option value="Doctorado">Doctorado</option>
+              </select>
+              <div class="select-dropdown"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="name">Foto</div>
+        <div class="value">
+          <div class="input-group">
+            <a id="test" href="#" data-toggle="modal" data-target="#exampleModal"
+               class="btn btn--radius-2 btn--blue text-white"><i class="fas fa-camera"></i></a>
+
+            <div class="col-md-8">
+              <input class="input--style-5" type="text" name="photob64" id="photob64"
+                     placeholder="Photo URI" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="name">Usuario</div>
+        <div class="value">
+          <div class="input-group">
+            <input class="input--style-5" type="text" name="user" id="user" disabled>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <input id="formId" type="hidden" name="IdForm">
+        <input class="input--style-5" type="hidden" id="latitude" name="latitude">
+        <input class="input--style-5" type="hidden" id="longitude" name="longitude">
+
+        <button id="sendButtonCreate" class="btn btn--radius-2 btn--red text-white"
+                disabled>Enviar</button>
+
+        <a href="/inapp/" class="btn btn--radius-2 btn--blue text-white">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+</main><!-- End #main -->
+
+<br>
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+
+  <div class="container footer-bottom clearfix">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NetBreakers</span></strong>. Todos los derechos reservados 2021
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+      Diseñado por Víctor Gómez y José Almonte
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+<div id="preloader"></div>
+
+
+
+
+<!-- Modal -->
+
+<div class="center">
+  <div class="modal show-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Foto</h5>
+          <button id="close2" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <video id="camera" style="max-width: 100%;
+            height: auto;" autoplay playsinline></video>
+          <img id="imgtest" src="" alt="" style="display: none;">
+          <canvas id="canvas" class="d-none"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button id="retake" type="button" class="btn btn-info" style="display:none;">Retomar</button>
+          <button id="savePic" type="button" class="btn btn-success" style="display:none;">Guardar</button>
+
+          <button id="photo" type="button" class="btn btn-primary">Tomar foto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<audio id="snapSound" src="/audio/snap.wav" preload="auto"></audio>
+
+
+
+<!-- Vendor JS Files -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+<!-- <script src="/vendor/jquery/jquery.min.js"></script> -->
+<!-- <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+<script src="/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="/vendor/waypoints/jquery.waypoints.min.js"></script>
+<script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/vendor/venobox/venobox.min.js"></script>
+<script src="/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="/vendor/aos/aos.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script> -->
+<!-- <script type="module" src="/js/database.js"></script> -->
+<!-- Template Main JS File -->
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<script src="/js/main.js"></script>
+
+
+
+
+<!--Implementando geolocalizacion-->
+<!-- <script src="/js/jquery-3.2.1.min.js"></script> -->
+<!-- <script type="module" src="/js/form.model.js"></script> -->
+
+
+<script>
+  var id, cantidad = 0;
+
+  //Indica las opciones para llamar al GPS.
+  var opcionesGPS = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  }
+
+  $(document).ready(function () {
+    console.log("Ejemplo de Geolocalizacion");
+
+    //Obteniendo la referencia directa.
+    navigator.geolocation.getCurrentPosition(function (geodata) {
+      var coordenadas = geodata.coords;
+      document.getElementById("latitude").value = coordenadas.latitude;
+      document.getElementById("longitude").value = coordenadas.longitude;
+    }, function () {
+      $("#posicionGps").text("No permite el acceso del API GEO");
+    }, opcionesGPS);
+
+  });
+
+
+  window.onload = function () {
+
+    $('#myModal').modal('toggle');
+
+    function setMessage(message, modalClass) {
+      document.querySelector(".modal-content").classList.add(modalClass);
+      document.getElementById("message").innerText = message;
+    }
+
+    if (document.getElementById("sendButtonCreate") != null) {
+      var a = document.getElementById("schoolLevelCreate");
+      var b = document.getElementById("name1");
+      var c = document.getElementById("lastname1");
+      var d = document.getElementById("sector1");
+      a.addEventListener("change", checkButtonCreate);
+      b.addEventListener("keyup", checkButtonCreate);
+      c.addEventListener("keyup", checkButtonCreate);
+      d.addEventListener("keyup", checkButtonCreate);
+    }
+
+
+
+    function checkButtonCreate() {
+      if (document.getElementById("schoolLevelCreate").value != "Seleccione" && document.getElementById("name1")
+                      .value != "" &&
+              document.getElementById("lastname1").value != "" && document.getElementById("sector1").value != "" &&
+              document.getElementById('photob64').value != ""
+      ) {
+        document.getElementById("sendButtonCreate").disabled = false;
+      } else {
+        document.getElementById("sendButtonCreate").disabled = true;
+      }
+    }
+
+
+    class FormApi {
+      constructor(name, lastName, area, nivelEscolar,user,latitude, longitude, photo) {
+        this.name = name;
+        this.lastName = lastName;
+        this.area = area;
+        this.nivelEscolar = nivelEscolar;
+        this.user = user;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.photo = photo;
+      }
+    }
+
+
+    async function addForm() {
+      let name = document.getElementById("name1").value;
+      let lastName = document.getElementById("lastname1").value;
+      let sector = document.getElementById("sector1").value;
+      let schoolLevel = document.getElementById("schoolLevelCreate").value;
+      let user = document.getElementById("user").value;
+      let latitude = Number(document.getElementById("latitude").value);
+      let longitude = Number(document.getElementById("longitude").value);
+      let photo = document.getElementById("photob64").value;
+
+      const form = new FormApi(name, lastName, sector, schoolLevel,user,latitude, longitude, photo);
+      createForm(form)
+      window.location.href = "/create-form";
+
+    }
+
+
+
+    if (document.getElementById("sendButtonCreate") != null) {
+      document.getElementById("sendButtonCreate").addEventListener("click", () => {
+        addForm();
+      });
+    }
+
+
+
+    const webcamElement = document.getElementById('camera');
+    const canvasElement = document.getElementById('canvas');
+    const snapSoundElement = document.getElementById('snapSound');
+
+
+    const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+
+
+    document.getElementById('test').addEventListener('click', () => {
+
+      webcam.start()
+              .then(result => {
+                console.log("webcam started");
+              })
+              .catch(err => {
+                console.log(err);
+              });
+    });
+    let picBase64 = '';
+    document.getElementById('photo').addEventListener('click', () => {
+
+      picBase64 = webcam.snap();
+      document.getElementById('photo').style.display = 'none';
+      document.getElementById('retake').style.display = 'inline-block';
+      document.getElementById('savePic').style.display = 'inline-block';
+
+      document.getElementById('imgtest').setAttribute('src', picBase64);
+      webcamElement.style.display = 'none'
+      document.getElementById('imgtest').style.display = 'block'
+      console.log(picBase64);
+    });
+
+    document.getElementById('close').addEventListener('click', () => {
+      webcam.stop();
+      document.getElementById('photo').style.display = 'inline-block';
+      document.getElementById('retake').style.display = 'none';
+      document.getElementById('savePic').style.display = 'none';
+      webcamElement.style.display = 'block'
+      document.getElementById('imgtest').style.display = 'none'
+    });
+
+    document.getElementById('close2').addEventListener('click', () => {
+      webcam.stop();
+      document.getElementById('photo').style.display = 'inline-block';
+      document.getElementById('retake').style.display = 'none';
+      document.getElementById('savePic').style.display = 'none';
+      webcamElement.style.display = 'block'
+      document.getElementById('imgtest').style.display = 'none'
+    });
+
+    document.getElementById('retake').addEventListener('click', () => {
+      document.getElementById('imgtest').style.display = 'none'
+      webcamElement.style.display = 'block'
+      document.getElementById('photo').style.display = 'inline-block';
+      document.getElementById('retake').style.display = 'none';
+      document.getElementById('savePic').style.display = 'none';
+
+    });
+
+    document.getElementById('savePic').addEventListener('click', () => {
+      $("#exampleModal").modal('hide');
+      document.getElementById('imgtest').style.display = 'none';
+      webcamElement.style.display = 'block'
+      document.getElementById('photo').style.display = 'inline-block';
+      document.getElementById('retake').style.display = 'none';
+      document.getElementById('savePic').style.display = 'none';
+      document.getElementById('photob64').value = '';
+      document.getElementById('photob64').value = picBase64;
+      webcam.stop();
+      checkButtonCreate();
+    });
+
+    document.addEventListener('click', (e) => {
+      console.log(e);
+    });
+  }
+
+
+
+  //Local storange
+  let userName = localStorage.getItem('user');
+  document.getElementById("user").value = userName;
+
+
+
+  function createForm(form){
+    let url = 'http://localhost:7000/api/v1/form/';
+    const token = localStorage.getItem('token');
+
+
+    fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(form), // data can be `string` or {object}!
+        headers:{
+            'Content-Type': 'application/json',
+            mode: 'no-cors',
+            'Authorization': 'Bearer '+token
+        }
+
+    }).then(res => res.json())
+        .catch(error => { console.error('Error:', error); })
+        .then(response => {
+          console.log("response.status:"+response.status);
+          console.log("response.ok:"+response.ok);
+
+            console.log('Success:', response);
+            if(response != undefined){
+                alert("El formulario ha sido guardado exitosamente.");
+            }
+
+        });
+
+      /*
+      $.ajax({
+        type: "POST",
+        url: url,
+        crossDomain: true,
+        body: JSON.stringify(form),
+        beforeSend: function (xhr){
+          xhr.setRequestHeader('Authorization', "Bearer "+token);
+        },
+        headers: {'Authorization': "Bearer "+localStorage.getItem("token")},
+        success: function (data) {
+          console.log('Success:', data);
+          alert("El formulario ha sido guardado exitosamente.");
+        }
+      }).fail(function (e) {
+        alert("Error: "+eval(e));
+      });
+       */
+  }
+
+  let user = localStorage.getItem('user');
+
+  if(user == undefined){
+    window.location.href = "/";
+  }
+
+</script>
+
+</body>
+
+</html>

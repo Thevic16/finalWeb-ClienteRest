@@ -84,7 +84,7 @@
                 </span>
             </div>
 
-            <form class="login100-form validate-form" method="post">
+            <form class="login100-form validate-form">
               <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                 <span class="label-input100">Usuario</span>
                 <input class="input100" type="text" name="username" id="username" placeholder="Ingrese nombre de usuario" required>
@@ -137,8 +137,54 @@
 <!-- Template Main JS File -->
 <script src="/js/main.js"></script>
 
-<script src="/js/functions.js"></script>
 
+
+<script>
+  function checkLogin(){
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+
+      let url = 'http://localhost:7000/api/v1/login/';
+      let data = { "username": username,"password":password };
+
+
+      fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+              .catch(error => {
+                console.error('Error:', error);
+                alert("Error!"+error);
+              })
+
+              .then(response => {
+
+                let token = response.token; // we need to read the body first.
+                //console.log("response.status:"+response.status); It is not working fine I do not why
+                //console.log("response.ok:"+response.ok);
+                console.log("token:"+token);
+
+
+                if(token != undefined){
+                  console.log('Success:', response);
+                  localStorage.setItem("token", token);
+                  //Local storange
+                  localStorage.setItem('user', username);
+                  // Simulate a mouse click:
+                  window.location.href = "/create-form";
+                }
+                else{
+                  alert("Usuario o contraseña incorrecta!");
+                  window.location.href = "/";
+                }
+
+              });
+  }
+
+</script>
 
 
 </body>
