@@ -103,7 +103,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <input class="input--style-5" id="username" name="username">
+            <input class="input--style-5" id="username" name="username" placeholder="Ingrese nombre de usuario">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -301,7 +301,7 @@
 
   function searchForm(){
 
-    for(let i = document.getElementById("tableForms").rows.length; i > 0;i--)
+    for(let i = document.getElementById("tableForms").rows.length; i > 1;i--)
     {
       document.getElementById("tableForms").deleteRow(i -1);
     }
