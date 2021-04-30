@@ -322,9 +322,6 @@
 
   });
 
-
-  window.onload = function () {
-
     $('#myModal').modal('toggle');
 
     function setMessage(message, modalClass) {
@@ -372,7 +369,7 @@
     }
 
 
-    async function addForm() {
+    function addForm() {
       let name = document.getElementById("name1").value;
       let lastName = document.getElementById("lastname1").value;
       let sector = document.getElementById("sector1").value;
@@ -383,17 +380,58 @@
       let photo = document.getElementById("photob64").value;
 
       const form = new FormApi(name, lastName, sector, schoolLevel,user,latitude, longitude, photo);
-      createForm(form)
-      window.location.href = "/create-form";
-
+      //createForm(form)
+      //window.location.href = "/create-form";
+      return form;
     }
 
 
 
     if (document.getElementById("sendButtonCreate") != null) {
-      document.getElementById("sendButtonCreate").addEventListener("click", () => {
-        addForm();
+      document.getElementById("sendButtonCreate").addEventListener("click",function (event) {
+        event.preventDefault();
+        let form = addForm();
+
+        /*
+        let form = {
+          "name": "gomez",
+          "lastName": "1",
+          "area": "1",
+          "nivelEscolar": "Básico",
+          "user": "admin",
+          "latitude": 19.4436952,
+          "longitude": -70.68114969999999,
+          "photo": "foto"
+        };
+         */
+
+        let url = 'https://final.theitshop.ninja/api/v1/form/';
+        const token = localStorage.getItem('token');
+
+
+        fetch(url, {
+          method: 'POST', // or 'PUT'
+          body: JSON.stringify(form), // data can be `string` or {object}!
+          headers:{
+            'Content-Type': 'application/json',
+            mode: 'no-cors',
+            'Authorization': 'Bearer '+token
+          }
+
+        }).then(res => res.json())
+                .catch(error => { console.error('Error:', error); })
+                .then(response => {
+                  //console.log("response.status:"+response.status);
+                  //console.log("response.ok:"+response.ok);
+
+                  console.log('Success:', response);
+                  if(response != undefined){
+                    alert("El formulario ha sido guardado exitosamente.");
+                  }
+                  window.location.href = "/create-form";
+                });
       });
+
     }
 
 
@@ -473,7 +511,7 @@
     document.addEventListener('click', (e) => {
       console.log(e);
     });
-  }
+
 
 
 
@@ -482,9 +520,9 @@
   document.getElementById("user").value = userName;
 
 
-
+/*
   function createForm(form){
-    let url = 'http://localhost:7000/api/v1/form/';
+    let url = 'https://final.theitshop.ninja/api/v1/form/';
     const token = localStorage.getItem('token');
 
 
@@ -509,26 +547,9 @@
             }
 
         });
-
-      /*
-      $.ajax({
-        type: "POST",
-        url: url,
-        crossDomain: true,
-        body: JSON.stringify(form),
-        beforeSend: function (xhr){
-          xhr.setRequestHeader('Authorization', "Bearer "+token);
-        },
-        headers: {'Authorization': "Bearer "+localStorage.getItem("token")},
-        success: function (data) {
-          console.log('Success:', data);
-          alert("El formulario ha sido guardado exitosamente.");
-        }
-      }).fail(function (e) {
-        alert("Error: "+eval(e));
-      });
-       */
   }
+
+ */
 
   let user = localStorage.getItem('user');
 
